@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* Apply styles to center the content in the viewport */
+    .centered-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 70vh;
+        text-align: center;
+    }
+
+    /* Style for the text */
+    .error-text {
+        font-size: 50px;
+        font-weight: bold;
+    }
+  
+    /* Style for the button */
+    .home {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+</style>
+
+<div class="centered-content">
+    <p class="error-text">
+        404: The page you requested could not be <br>found.
+    </p>
+    <a href="/" id="btn" class="btn btn-primary home">Home</a>
+</div>
+{% endblock %}
