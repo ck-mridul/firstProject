@@ -7,7 +7,7 @@ from django.utils.text import slugify
 
 class Offer(BaseModel):
     name = models.CharField(max_length=50)
-    percentage = models.IntegerField()
+    percentage = models.BigIntegerField()
 
     def __str__(self) -> str:
         return self.name
@@ -104,8 +104,8 @@ class ProductVariant(BaseModel):
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE, related_name="productVariant"
     )
-    quantity = models.IntegerField(default=0)
-    price = models.IntegerField()
+    quantity = models.BigIntegerField(default=0)
+    price = models.BigIntegerField()
     color = models.CharField(max_length=10)
     ram = models.CharField(max_length=10)
     storage = models.CharField(max_length=10)
@@ -117,5 +117,5 @@ class ProductVariant(BaseModel):
 class Coupon(BaseModel):
     coupon_code = models.CharField(max_length=10)
     is_expired = models.BooleanField(default=False)
-    discount_price = models.IntegerField(default=100)
-    minimum_amount = models.IntegerField(default=500)
+    discount_price = models.BigIntegerField(default=100)
+    minimum_amount = models.BigIntegerField(default=500)

@@ -35,9 +35,9 @@ class Order(BaseModel):
         Payment, on_delete=models.SET_NULL, blank=True, null=True
     )
     order_number = models.CharField(max_length=20)
-    coupon_price = models.IntegerField(default=0)
-    subtotal = models.IntegerField(default=0)
-    discount = models.IntegerField(default=0)
+    coupon_price = models.BigIntegerField(default=0)
+    subtotal = models.BigIntegerField(default=0)
+    discount = models.BigIntegerField(default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     status = models.CharField(
@@ -55,7 +55,7 @@ class OrderProduct(BaseModel):
     )
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     variation = models.ForeignKey(ProductVariant, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.BigIntegerField()
 
     def __str__(self):
         return self.product.product_name
