@@ -15,12 +15,12 @@ class Address(BaseModel):
     name = models.CharField(max_length=50)
     landmark = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=50)
-    pincode = models.IntegerField()
+    pincode = models.BigIntegerField()
     state = models.CharField(max_length=50)
     place = models.CharField(max_length=50)
     address = models.CharField(max_length=50)
-    phone = models.IntegerField()
-    alternate_number = models.IntegerField(blank=True, null=True)
+    phone = models.BigIntegerField()
+    alternate_number = models.BigIntegerField(blank=True, null=True)
 
 
 class Wishlist(BaseModel):
