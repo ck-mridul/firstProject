@@ -3,3 +3,4 @@ venv
 data_dump.json
 data.json
 settings.py
+db.sqlite3

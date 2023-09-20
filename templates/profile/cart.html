@@ -145,24 +145,26 @@
                           <dt>Sub total:</dt>
                           <dd class="text-right">&#x20B9; <span id="subTotal">{{ total_price }}<span></dd>
                         </dl>
+                        {% if discount %}
                         <dl class="dlist-align">
                           <dt>Discount:</dt>
                           <dd class="text-right">- &#x20B9; <span id="discount">{{discount}} <span></dd>
                         </dl>
+                        {% endif %}
 
+                        {% if coupon_price %}
                         <dl class="dlist-align">
                             <dt>Coupon:</dt>
                             <dd class="text-right">- &#x20B9; <span>{{coupon_price}} <span></dd>
                           </dl>
+                          {% endif %}
 
                         <dl class="dlist-align">
                           <dt>Total:</dt>
                           <dd class="text-right  h5" >&#x20B9;<span id="total" >{{ total}}<span></strong></dd>
                         </dl>
                         <hr>
-                        <p class="text-center mb-3">
-                            <img src="images/misc/payments.png" height="26">
-                        </p>
+                       
                         
                 </div> <!-- card-body.// -->
             </div>  <!-- card .// -->

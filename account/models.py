@@ -9,7 +9,7 @@ from product.models import Product, ProductVariant, Coupon
 class Profile(AbstractUser):
     phone = models.BigIntegerField(null=True, blank=True)
     is_email_verified = models.BooleanField(default=False)
-    profile_image = models.ImageField(upload_to="profile")
+    profile_image = models.ImageField(upload_to="profile",null=True, blank=True)
 
     def get_cart_count(self):
         return CartItem.objects.filter(cart__is_paid=False, cart__user=self).count()

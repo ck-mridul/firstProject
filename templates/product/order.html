@@ -71,21 +71,27 @@
                   <dt>Total price:</dt>
                   <dd class="text-right">&#8377; {{ total_price }} </dd>
                 </dl>
+                {% if coupon_price %}
                 <dl class="dlist-align">
                   <dt>Coupon:</dt>
                   <dd class="text-right">- &#8377; {{coupon_price}} </dd>
                 </dl>
+                {% endif %}
+                {% if discount %}
                 <dl class="dlist-align">
                     <dt>Discount:</dt>
                     <dd class="text-right">- &#8377; {{discount}} </dd>
                   </dl>
+                  {% endif %}
                 <dl class="dlist-align">
                   <dt>Total:</dt>
                   <dd class="text-right text-dark b"><strong>&#8377; {{total}} </strong></dd>
                 </dl>
                 <hr>
            
-                <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+                <button type="submit" id="place-order" class="btn btn-primary btn-block" disabled>Place Order</button>
+                <p id="select-address-message" style="color: red; display: none;">Please add and select an address.</p>
+
 
         </form>
             </div> <!-- card-body.// -->
@@ -130,27 +136,27 @@
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label>Phone</label>
-                                            <input type="text" placeholder="10-digit mobile number" name="phone" class="form-control" required>
+                                            <input type="number" placeholder="10-digit mobile number" name="phone" class="form-control" required>
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label>Pincode</label>
-                                            <input type="text" placeholder="Pincode" name="pincode" class="form-control" required>
+                                            <input type="number" placeholder="Pincode" name="pincode" class="form-control" required>
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label>Place</label>
-                                            <input type="text" placeholder="Place" name="place" class="form-control">
+                                            <input type="text" placeholder="Place" name="place" class="form-control" required>
                                         </div>
                                         <div class="form-group col-sm-12">
                                             <label>Address</label>
-                                            <input type="text" placeholder="Address (Area and Street)" name="address" class="form-control">
+                                            <input type="text" placeholder="Address (Area and Street)" name="address" class="form-control" required>
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label>City/District</label>
-                                            <input type="text" placeholder="City/District" name="city" class="form-control">
+                                            <input type="text" placeholder="City/District" name="city" class="form-control" required>
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label>State</label>
-                                            <input type="text" placeholder="State" name="state" class="form-control">
+                                            <input type="text" placeholder="State" name="state" class="form-control" required>
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label>Landmark</label>
@@ -158,7 +164,7 @@
                                         </div>
                                         <div class="form-group col-sm-6">
                                             <label>Alternate Phone</label>
-                                            <input type="text" placeholder="Alternate Phone(Optional)" name="alternate_number" class="form-control">
+                                            <input type="number" placeholder="Alternate Phone(Optional)" name="alternate_number" class="form-control">
                                         </div>
                                 </div> <!-- row.// -->	
                            
@@ -174,5 +180,28 @@
             </div>
         </div>
 
+        <script>
+            $(document).ready(function () {
+                // Function to check if at least one radio input is selected
+                function checkRadioSelection() {
+                    const radioInputs = $("input[type='radio']");
+                    const submitButton = $("#place-order");
+                    const selectAddressMessage = $("#select-address-message");
+                    
+                    if (radioInputs.is(":checked")) {
+                        submitButton.prop("disabled", false);
+                        selectAddressMessage.hide();
+                    } else {
+                        submitButton.prop("disabled", true);
+                        selectAddressMessage.show();
+                    }
+                }
+                
+                // Call the function on page load and when radio inputs change
+                checkRadioSelection();
+                $("input[type='radio']").change(checkRadioSelection);
+            });
+        </script>
+    
 
     {% endblock %}

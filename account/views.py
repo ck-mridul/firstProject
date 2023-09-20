@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Profile, Cart, CartItem
 import random
 from base.emails import send_account_activation_email
+from django.views.decorators.cache import cache_control
 
 
 def session_key(request):
@@ -14,7 +15,7 @@ def session_key(request):
         session_key = request.session.session_key
     return session_key
 
-
+@cache_control(no_cache=True, must_revalidate=True)
 def login_page(request):
     if request.user.is_authenticated:
         return redirect("/")
