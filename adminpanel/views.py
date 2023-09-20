@@ -291,7 +291,7 @@ def delete_catagory(request,uid):
 @login_required(login_url="adminlogin")
 def productview(request):
     if not request.user.is_superuser:
-        return redirect("admin_login")
+        return redirect("adminlogin")
     product = Product.objects.all()
     catagory = Category.objects.all()
     brand = Brand.objects.all()
