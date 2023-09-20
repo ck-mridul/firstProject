@@ -175,7 +175,10 @@ def delete_cart_item(request, uid):
 
 
 def remove_coupon(request):
-    cart = Cart.objects.get(is_paid=False, user=request.user)
+    if request.user.is_authenticated:
+        cart = Cart.objects.get(is_paid=False, user=request.user)
+    else:
+        cart = Cart.objects.get(is_paid=False, session_id=session_key(request))
     cart.coupon = None
     cart.save()
     messages.success(request, "Coupon Removed")

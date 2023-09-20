@@ -88,9 +88,9 @@ def place_order(request):
     user = None
     if request.user.is_authenticated:
         user = request.user
-        cart = Cart.objects.get(user=user)
+        cart,_ = Cart.objects.get_or_create(user=user)
     else:
-        cart = Cart.objects.get(session_id=session_key(request))
+        cart,_ = Cart.objects.get_or_create(session_id=session_key(request))
     cart_items = CartItem.objects.filter(cart=cart)
     total_price = sum(item.get_total_price() for item in cart_items)
     discount = round(
